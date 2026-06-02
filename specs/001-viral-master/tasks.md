@@ -31,9 +31,9 @@ description: "Task list for 爆款大师模块 (Viral Master Module) feature imp
 
 ---
 
-## Phase 1: MVP (US1 + US2 + US3)
+## Phase 1: MVP (US1 + US2 + US3 + Character)
 
-**Purpose**: 核心产品交付 — AI 对话、国内视频生成、算力计费
+**Purpose**: 核心产品交付 — AI 对话、国内视频生成、算力计费、角色创建
 
 ### Story: US1 — AI Chat (一键追爆)
 
@@ -77,7 +77,18 @@ description: "Task list for 爆款大师模块 (Viral Master Module) feature imp
 - [ ] T034 [P] [MVP] [US2] Build TaskList in `frontend/src/components/video/TaskList.vue`
 - [ ] T035 [P] [MVP] [US2] Build WorksGallery in `frontend/src/components/video/WorksGallery.vue`
 
-**MVP Checkpoint**: AI 对话 + 国内视频生成 + 算力计费全部可用
+### Story: Character — 角色创建与引用
+
+**Independent Test**: 创建角色（Nano Banana AI 生成或手动上传），在创意描述中输入 @ 弹出角色列表并引用，最近使用角色显示在快捷插入区
+
+- [ ] T036 [P] [MVP] Create Character entity + CharacterService in `backend/src/viral-master/entities/character.entity.ts`, `backend/src/viral-master/services/character.service.ts`
+- [ ] T037 [MVP] Implement CharacterController in `backend/src/viral-master/controllers/character.controller.ts`
+- [ ] T038 [P] [MVP] Implement character Pinia store in `frontend/src/stores/character.ts`
+- [ ] T039 [P] [MVP] Build character creation UI in `frontend/src/components/video/CharacterCreator.vue` (Nano Banana flow + manual upload)
+- [ ] T040 [P] [MVP] Build character list & recent characters components in `frontend/src/components/video/CharacterList.vue`
+- [ ] T041 [MVP] Integrate @ character mention in CreativeDescription component
+
+**MVP Checkpoint**: AI 对话 + 国内视频生成 + 算力计费 + 角色创建全部可用
 
 ---
 
@@ -89,23 +100,23 @@ description: "Task list for 爆款大师模块 (Viral Master Module) feature imp
 
 **Independent Test**: 进入国际版模块，上传素材，输入英文创意描述，选择 TikTok 比例，提交任务，验证使用国际引擎完成
 
-- [ ] T036 [P] [Phase2] [US4] Implement KlingProvider (or TBD engine) in `backend/src/viral-master/providers/kling.provider.ts`
-- [ ] T037 [Phase2] [US4] Add engine routing in VideoTaskService (domestic vs international)
-- [ ] T038 [P] [Phase2] [US4] Build international video creation page in `frontend/src/views/video-creation/international/index.vue`
-- [ ] T039 [P] [Phase2] [US4] Build VideoParamsInternational for international aspect ratios/models
-- [ ] T040 [Phase2] [US4] Build CreativeDescriptionInternational for multi-language input
+- [ ] T042 [P] [Phase2] [US4] Implement KlingProvider (or TBD engine) in `backend/src/viral-master/providers/kling.provider.ts`
+- [ ] T043 [Phase2] [US4] Add engine routing in VideoTaskService (domestic vs international)
+- [ ] T044 [P] [Phase2] [US4] Build international video creation page in `frontend/src/views/video-creation/international/index.vue`
+- [ ] T045 [P] [Phase2] [US4] Build VideoParamsInternational for international aspect ratios/models
+- [ ] T046 [Phase2] [US4] Build CreativeDescriptionInternational for multi-language input
 
 ### Story: US5 — Content Management
 
 **Independent Test**: 发起对话后右侧栏看到按时间分组的历史会话；上传素材后可在素材库查看；生成视频后可在作品库按目录树查找
 
-- [ ] T041 [P] [Phase2] [US5] Add annotation service endpoints in ChatController
-- [ ] T042 [P] [Phase2] [US5] Implement WorkspaceController for directory tree CRUD
-- [ ] T043 [Phase2] [US5] Implement material library list API with type filter + pagination
-- [ ] T044 [P] [Phase2] [US5] Build MaterialLibrary page in `frontend/src/views/video-creation/MaterialLibrary.vue`
-- [ ] T045 [P] [Phase2] [US5] Build WorkspaceTree component in `frontend/src/components/common/WorkspaceTree.vue`
-- [ ] T046 [P] [Phase2] [US5] Build WorksLibrary view in `frontend/src/components/video/WorksLibrary.vue`
-- [ ] T047 [Phase2] [US5] Add message annotation UI in `frontend/src/components/chat/MessageAnnotation.vue`
+- [ ] T047 [P] [Phase2] [US5] Add annotation service endpoints in ChatController
+- [ ] T048 [P] [Phase2] [US5] Implement WorkspaceController for directory tree CRUD
+- [ ] T049 [Phase2] [US5] Implement material library list API with type filter + pagination
+- [ ] T050 [P] [Phase2] [US5] Build MaterialLibrary page in `frontend/src/views/video-creation/MaterialLibrary.vue`
+- [ ] T051 [P] [Phase2] [US5] Build WorkspaceTree component in `frontend/src/components/common/WorkspaceTree.vue`
+- [ ] T052 [P] [Phase2] [US5] Build WorksLibrary view in `frontend/src/components/video/WorksLibrary.vue`
+- [ ] T053 [Phase2] [US5] Add message annotation UI in `frontend/src/components/chat/MessageAnnotation.vue`
 
 **Phase 2 Checkpoint**: 国际版可用 + 素材/作品可按目录管理
 
@@ -119,12 +130,12 @@ description: "Task list for 爆款大师模块 (Viral Master Module) feature imp
 
 **Independent Test**: 输入粗糙文案，点击 AI 润色验证优化；长视频版预设模板可一键填充；对话可导出 Word 文档
 
-- [ ] T048 [P] [Phase3] [US6] Implement AI polish endpoint in ChatController (reuse LLM, polish system prompt)
-- [ ] T049 [P] [Phase3] [US6] Implement Word export endpoint — POST /chat/sessions/:id/export
-- [ ] T050 [P] [Phase3] [US6] Implement share endpoint — POST /chat/sessions/:id/share
-- [ ] T051 [P] [Phase3] [US6] Wire AI polish button in CreativeDescription with accept/revert diff
-- [ ] T052 [P] [Phase3] [US6] Build export/share UI in chat page (Word download, share link copy)
-- [ ] T053 [Phase3] [US6] Build LongVideoMode component with preset template selector
+- [ ] T054 [P] [Phase3] [US6] Implement AI polish endpoint in ChatController (reuse LLM, polish system prompt)
+- [ ] T055 [P] [Phase3] [US6] Implement Word export endpoint — POST /chat/sessions/:id/export
+- [ ] T056 [P] [Phase3] [US6] Implement share endpoint — POST /chat/sessions/:id/share
+- [ ] T057 [P] [Phase3] [US6] Wire AI polish button in CreativeDescription with accept/revert diff
+- [ ] T058 [P] [Phase3] [US6] Build export/share UI in chat page (Word download, share link copy)
+- [ ] T059 [Phase3] [US6] Build LongVideoMode component with preset template selector
 
 ---
 
@@ -132,10 +143,10 @@ description: "Task list for 爆款大师模块 (Viral Master Module) feature imp
 
 **Purpose**: 完善跨模块的非功能性需求
 
-- [ ] T054 [P] Add loading states, error boundaries, and skeleton screens across all pages
-- [ ] T055 [P] Add responsive layout adjustments for the three-column layout
-- [ ] T056 Add comprehensive logging and monitoring integration
-- [ ] T057 Run end-to-end validation per quickstart.md
+- [ ] T060 [P] Add loading states, error boundaries, and skeleton screens across all pages
+- [ ] T061 [P] Add responsive layout adjustments for the three-column layout
+- [ ] T062 Add comprehensive logging and monitoring integration
+- [ ] T063 Run end-to-end validation per quickstart.md
 
 ---
 
@@ -146,14 +157,15 @@ description: "Task list for 爆款大师模块 (Viral Master Module) feature imp
 ```
 Phase 0 (Setup & Foundational)
          │
-         └── Phase 1 (MVP: US1 + US2 + US3)
-                  ├── US1 AI Chat ────── independent of other stories
-                  ├── US3 Credit ─────── independent of other stories
-                  └── US2 Domestic ───── depends on US3 (credit check)
+         └── Phase 1 (MVP: US1 + US2 + US3 + Character)
+                  ├── US1 AI Chat ────── independent
+                  ├── US3 Credit ─────── independent
+                  ├── US2 Domestic ───── depends on US3 (credit check)
+                  └── Character ──────── independent (used by US2 CreativeDescription)
          │
          └── Phase 2 (US4 + US5)
-                  ├── US4 International ─ depends on US3 (credit)
-                  └── US5 Content Mgmt ── depends on US2 (works)
+                  ├── US4 International ─ depends on US3
+                  └── US5 Content Mgmt ── depends on US2
          │
          └── Phase 3 (US6)
                   └── US6 Polish/Export ─ depends on US1 + US2
@@ -162,23 +174,25 @@ Phase 0 (Setup & Foundational)
 ### Parallel Opportunities
 
 - US1 and US3 can be built in parallel within Phase 1
+- Character story can be built in parallel with US1/US3
 - US4 and US5 can be built in parallel within Phase 2
-- All [P] tasks within any phase can run in parallel
 
 ---
 
 ## Parallel Example: Phase 1 MVP
 
 ```bash
-# US1 + US3 in parallel:
-# Developer A: US1 entities + ChatService + ChatController + SSE
-# Developer B: US3 entities + CreditService + CreditController
-# Developer C (after US3): US2 entities + SeedanceProvider + VideoTaskService
+# In parallel:
+# Developer A: US1 entities + ChatService + SSE + Controller
+# Developer B: US3 Credit entities + CreditService + Controller
+# Developer C: Character entity/service + controller
+# Developer D (after US3): US2 entities + SeedanceProvider + VideoTaskService
 
 # Frontend in parallel:
 # Developer A: Chat page + ChatMessageList + ChatInput
-# Developer B: CapabilityCards + RightPanel
-# Developer C: CreditBadge + MaterialUploader + VideoParams
+# Developer B: CapabilityCards + RightPanel + CreditBadge
+# Developer C: CharacterCreator + CharacterList
+# Developer D: MaterialUploader + CreativeDescription + VideoParams
 ```
 
 ---
@@ -188,14 +202,14 @@ Phase 0 (Setup & Foundational)
 ### MVP First (Phase 1 only)
 
 1. Phase 0: Setup + Foundational ✓
-2. Phase 1: US1 (AI Chat) + US3 (Credit) + US2 (Domestic video)
-3. **STOP and VALIDATE**: Test all 3 stories independently
+2. Phase 1: US1 + US3 + Character + US2
+3. **STOP and VALIDATE**: Test all stories independently
 4. Deploy MVP
 
 ### Incremental Delivery
 
 1. Phase 0 → Foundation ready
-2. Phase 1 → MVP (chat + video + credit) → Deploy
+2. Phase 1 → MVP (chat + video + credit + character) → Deploy
 3. Phase 2 → International + Content management → Deploy
 4. Phase 3 → Advanced features → Deploy
 5. Phase 4 → Polish

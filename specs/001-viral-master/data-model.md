@@ -78,6 +78,21 @@ VideoTask 1──N VideoOutput
 
 ---
 
+## Character（角色）
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | string | Y | UUID |
+| userId | string | Y | Owner user ID |
+| name | string | Y | Character name (e.g., "画家", "医生") |
+| avatarUrl | string | Y | Character image URL |
+| promptTemplate | string | Y | Auto-fill prompt text when referenced |
+| voice | string | N | Optional voice clone identifier |
+| source | enum(nano-banana, manual-upload) | Y | Creation method |
+| createdAt | datetime | Y | Creation time |
+
+---
+
 ## Material（素材）
 
 | Field | Type | Required | Description |
