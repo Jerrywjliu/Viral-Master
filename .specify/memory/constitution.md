@@ -1,50 +1,61 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+  Sync Impact Report
+  Version change: 0.1.0 → 1.0.0
+  Modified principles: N/A (initial creation)
+  Added sections: Core Principles (5), Tech Stack & Architecture, Development Workflow, Governance
+  Removed sections: N/A
+  Templates requiring updates: ✅ constitution-template.md (source), ✅ spec-template.md (reviewed), ✅ plan-template.md (reviewed), ✅ tasks-template.md (reviewed)
+  Follow-up TODOs: RATIFICATION_DATE set to 2026-05-31 (project init date)
+-->
+
+# Viral Master Module Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Spec-First Development
+Every feature MUST start with a specification before any implementation code is written. Specifications define the WHAT and WHY, not the HOW. The `/speckit.constitution` → `/speckit.specify` → `/speckit.plan` → `/speckit.tasks` → `/speckit.implement` workflow MUST be followed in order.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Independent Testability (NON-NEGOTIABLE)
+Each user story MUST be independently testable and deliverable. Every feature slice MUST demonstrate value on its own without requiring other stories. Tests MUST be written and approved before implementation begins.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Type Safety & API Contract First
+Frontend (Vue 3 + TypeScript) and backend (NestJS) MUST share type definitions for all API contracts. All API responses MUST have corresponding TypeScript interfaces. Breaking changes to API contracts MUST be versioned.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. SSE Streaming Correctness
+All AI chat features using Server-Sent Events MUST handle: connection retry with exponential backoff, partial message buffering, proper stream termination detection, and graceful degradation when the stream fails mid-response.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. AI Service Abstraction
+All external AI/video engine integrations (Seedance 2.0, international engines) MUST be behind an abstraction layer. No direct vendor API calls outside the dedicated provider module. Each provider MUST implement a common interface for submission, status polling, and callback handling.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Tech Stack & Architecture
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+The project is part of the DynaXAI platform. The agreed tech stack MUST NOT be changed without explicit plan revision:
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+| Layer | Technology |
+|-------|-----------|
+| Frontend Framework | Vue 3 + Naive UI |
+| State Management | Pinia |
+| Routing | Vue Router (hash mode) |
+| HTTP Client | Axios + Bearer Token (JWT) |
+| Backend | NestJS |
+| Storage | MinIO / Alibaba OSS |
+| AI Video Engine (Domestic) | Seedance 2.0 (Volcengine) |
+| AI Video Engine (International) | TBD international engine |
+| AI Chat | Custom AI Provider with SSE |
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+
+1. **Branch Convention**: Feature branches follow `[###-feature-name]` pattern (e.g., `001-one-click-viral`)
+2. **Implementation Order**: Follow priority (P0 → P1 → P2) as defined in the specification
+3. **Phase Gates**:
+   - Phase 1 (MVP): One-Click Viral chat + One-Click Masterpiece Domestic basic flow + Compute power system
+   - Phase 2: International version + History + Material library
+   - Phase 3: AI polish + Long video + Export features
+4. **Commit Style**: Conventional commits (`feat:`, `fix:`, `docs:`, `refactor:`, `test:`)
+5. **Code Review**: All PRs MUST verify compliance with this constitution
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes ad-hoc development decisions. Amendments require documentation of the change, approval rationale, and a migration plan. All PRs and implementation reviews must verify compliance with these principles. Complexity MUST be justified — prefer simple solutions over over-engineered abstractions. Use AGENTS.md for runtime development guidance.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-05-31 | **Last Amended**: 2026-05-31
